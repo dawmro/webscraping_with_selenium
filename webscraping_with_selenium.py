@@ -118,8 +118,14 @@ def main():
 
     while True:
         
-        content = get_page_content(url)
-        my_dict = get_pse_data(content)
+        my_dict = {}
+        try:
+            print("starting getting data")
+            content = get_page_content(url)
+            my_dict = get_pse_data(content)
+        except:
+            print("getting data failed")
+            
         print(f"Add to db success?: {save_pse_data_to_db(my_dict)}")
             
         print("Waiting 60 seconds")
