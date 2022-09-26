@@ -120,13 +120,14 @@ def main():
         
         my_dict = {}
         try:
-            print("starting getting data")
+            print("\nStarting getting data")
             content = get_page_content(url)
             my_dict = get_pse_data(content)
         except:
             print("getting data failed")
-            
-        print(f"Add to db success?: {save_pse_data_to_db(my_dict)}")
+        
+        if len(my_dict) > 0:    
+            print(f"Add to db success?: {save_pse_data_to_db(my_dict)}")
             
         print("Waiting 60 seconds")
         time.sleep(60)
