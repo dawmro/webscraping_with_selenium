@@ -4,7 +4,15 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+from datetime import datetime
 import sqlite3
+
+
+
+
+def tStamp():
+
+    return str("["+datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')+" UTC]")
 
 
 
@@ -111,27 +119,36 @@ def get_pse_data(content):
     return my_dict
 
 
+
 def main():
 
     url = f"https://www.pse.pl/dane-systemowe"
 
-
     while True:
-        
+        content = ""
         my_dict = {}
-        try:
-            print("\nStarting getting data")
+        
+        print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+        print(f"{tStamp()} Starting get_page_content(url)...")
+        try: 
             content = get_page_content(url)
+        except:
+            print(f"\n {tStamp()} Failed get_page_content(url) :(")
+        
+        print(f"\n {tStamp()} Starting get_pse_data(content)...")
+        try:
             my_dict = get_pse_data(content)
         except:
-            print("getting data failed")
+            print(f"\n {tStamp()} Failed get_pse_data(content) :(")
         
         if len(my_dict) > 0:    
-            print(f"Add to db success?: {save_pse_data_to_db(my_dict)}")
+            print(f"{tStamp()} Add to db success?: {save_pse_data_to_db(my_dict)}")
             
-        print("Waiting 60 seconds")
+        print(f"{tStamp()} Waiting 60 seconds\n")
+        print(f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
         time.sleep(60)
 
+   
    
 if __name__ == '__main__':
     main()
