@@ -17,7 +17,7 @@ env/Scripts/activate
 ```
 3. Install packages from included requirements.txt:
 ``` sh
-pip3 install .\requirements.txt
+pip3 install -r .\requirements.txt
 ```
 
 ## Usage:
