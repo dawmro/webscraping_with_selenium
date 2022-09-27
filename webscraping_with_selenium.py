@@ -128,24 +128,24 @@ def main():
         content = ""
         my_dict = {}
         
-        print(f"vvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+        print(f"\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
         print(f"{tStamp()} Starting get_page_content(url)...")
         try: 
             content = get_page_content(url)
         except:
-            print(f"\n {tStamp()} Failed get_page_content(url) :(")
+            print(f"{tStamp()} Failed get_page_content(url) :(")
         
-        print(f"\n {tStamp()} Starting get_pse_data(content)...")
+        print(f"{tStamp()} Starting get_pse_data(content)...")
         try:
             my_dict = get_pse_data(content)
         except:
-            print(f"\n {tStamp()} Failed get_pse_data(content) :(")
+            print(f"{tStamp()} Failed get_pse_data(content) :(")
         
         if len(my_dict) > 0:    
             print(f"{tStamp()} Add to db success?: {save_pse_data_to_db(my_dict)}")
             
-        print(f"{tStamp()} Waiting 60 seconds\n")
-        print(f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        print(f"{tStamp()} Waiting 60 seconds")
+        print(f"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n")
         time.sleep(60)
 
    
